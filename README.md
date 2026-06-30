@@ -1,0 +1,2 @@
+# Information-Disclosure-Labs-PortSwigger-Web-Security-Academy
+This repository contains my write-ups for Information Disclosure vulnerabilities from the PortSwigger Web Security Academy. Each lab demonstrates how seemingly harmless information exposed by a web application can provide attackers with valuable insights into the application's internal structure, configuration, or sensitive credentials.
