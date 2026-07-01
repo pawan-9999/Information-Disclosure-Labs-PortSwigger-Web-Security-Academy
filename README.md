@@ -136,7 +136,45 @@ Burp Suite
 Disclaimer
 
 This repository contains write-ups completed in the PortSwigger Web Security Academy training environment. All activities were performed in an authorized lab created for educational purposes. The techniques documented here are intended solely for learning, ethical hacking, and improving web application security.
+Lab 4 – Information Disclosure in Version Control History
+Objective
 
+Identify sensitive information exposed through an accessible Git version control repository.
+
+Description
+
+In this lab, I identified an exposed .git directory that allowed access to the application's version control history. By downloading the repository and reviewing the commit history, I discovered that a previously hard-coded administrator password remained visible within a Git diff, even though it had been removed from the latest version of the configuration file. Using the recovered credentials, I successfully authenticated as the administrator and completed the lab.
+
+Methodology
+Identified the publicly accessible .git directory.
+Downloaded the exposed Git repository.
+Examined the commit history using Git.
+Reviewed the commit diff to identify changes made to the configuration file.
+Recovered the previously removed administrator password from the Git history.
+Logged in using the recovered administrator credentials.
+Accessed the admin panel and completed the required administrative action.
+Security Impact
+
+Exposed version control repositories may reveal:
+
+Hard-coded credentials
+API keys and access tokens
+Database configuration details
+Application source code
+Deleted secrets preserved in commit history
+Internal development history
+
+Even if sensitive information has been removed from the latest version of the application, it may still be recoverable through Git history, potentially leading to unauthorized access.
+
+Remediation
+Never expose the .git directory on production servers.
+Exclude version control metadata from production deployments.
+Store secrets securely using environment variables or dedicated secret management solutions.
+Remove sensitive information from Git history when necessary using appropriate repository rewriting techniques.
+Perform security reviews before deployment to identify exposed development artifacts.
+Key Learning
+
+Removing sensitive information from the latest version of a file does not eliminate it from Git history. If a version control repository is publicly accessible, attackers may recover previously deleted credentials, API keys, or other confidential information by reviewing commit history and diffs.
 
 
 Author: Pawan Yadav
